@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block title %}Modify post{% endblock title %}
+{% block extrahead %}
+    {{ form.media }}
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-center align-items-center posts-form">
+            <div class="col-12 col-sm-12 col-md-10 col-lg-8 col-xl-8">
+                {% if post.author == user or user.is_admin %}
+                    <form method="post">
+                        {% csrf_token %}
+                        <h1 class="text-center">Update Post</h1><br>
+                        <div class="first-row form-group row">
+                            <label>Title</label>
+                            <div class="input-group">
+                                {{ form.title }}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label>Text</label>
+                            <div class="input-group">
+                                {{ form.text }}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-12 col-sm-12 col-md-6">
+                                <label>Tags</label>
+                                {{ form.tags }}
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-6">
+                                <label>Categories</label>
+                                <div class="input-group">
+                                    {{ form.categories }}
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            Disable date : {{ form.disable_date }}
+                        </div>
+                        <div>
+                            Publicacion date: {{ form.publication_date }}
+                        </div>
+                        <div class="pt-3">
+                            <button type="submit" class="btn btn-outline-primary btn-block">
+                                Modify
+                            </button>
+                        </div>
+                    </form>
+                    <div class="pt-3">
+                            <form action="{% url 'posts/delete' post.id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-outline-danger btn-block">
+                                    Delete
+                                </button>
+                            </form>
+                        </div>
+                    {% if form.errors %}
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <div class="card border-danger mb-3">
+                                    <div class="card-body text-danger">
+                                        <p class="card-text">
+                                            {{ error|escape }}
+                                        </p>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}
+                            <div class="card border-danger mb-3">
+                                <div class="card-body text-danger">
+                                    <p class="card-text">
+                                        {{ error|escape }}
+                                    </p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% else %}
+                    <div class="alert text-center align-self-center alert-danger ">
+                        <p>This post can only be modified by its author or an administrator.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}

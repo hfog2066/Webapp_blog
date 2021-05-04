@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}Log in{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center login-form">
+        <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5">
+            <form class="mx-auto" method="post">
+                {% csrf_token %}
+                <h1>Blog App</h1>User Name</label>
+                    <div class="input-group">
+                        {{ form.username }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <div class="input-group">
+                        {{ form.password }}
+                    </div>
+                </div>
+                {% if user.is_authenticated %}
+                    <div class="card border-danger mb-3">
+                        <div class="card-body text-danger">
+                            <p class="card-text">
+                                Has been authenticated as <strong> {{ user.username }} </strong>, but you are not authorized
+                                to access this page. ¿Do you want to authenticate with a different account?
+                            </p>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if form.errors %}
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <div class="card border-danger mb-3">
+                                <div class="card-body text-danger">
+                                    <p class="card-text">
+                                        {{ error|escape }}
+                                    </p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                        <div class="card border-danger mb-3">
+                            <div class="card-body text-danger">
+                                <p class="card-text">
+                                    {{ error|escape }}
+                                </p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <button type="submit" class="btn btn-outline-primary btn-block">Log In</button>
+                <div class="dropdown-divider"></div>
+                <div class="signup-links">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'home' %}">Back to Home</a>
+                    {% endif %}
+                    <a href="{% url 'signup' %}">
+                        Sign up
+                    </a>
+                        <span class="sr-only"></span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

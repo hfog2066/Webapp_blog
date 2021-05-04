@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block title %}Create post{% endblock title %}
+{% block extrahead %}
+{{ form.media }}
+{% endblock %}
+{% block content %}
+    <div class="row justify-content-center align-items-center posts-form">
+        <div class="col-12 col-sm-12 col-md-10 col-lg-8 col-xl-8">
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label>Title</label>
+                    <div class="input-group">
+                        {{ form.title }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Text</label>
+                    <div class="input-group">
+                        {{ form.text }}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <label>Tags</label>
+                        <div class="input-group">
+                                {{ form.tags }}
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <label>Categories</label>
+                        <div class="input-group">
+                            {{ form.categories }}
+                        </div>
+                    </div>
+                </div>
+                <div>
+                Disable date: {{ form.disable_date }}
+                </div>
+                <div>
+                    Publication date: {{ form.publication_date }}
+                </div>
+                <div class="pt-3">
+                    <button type="submit" class="btn btn-outline-primary btn-block">
+                        Create
+                    </button>
+                </div>
+            </form>
+            {% if form.errors %}
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <div class="card border-danger mb-3">
+                            <div class="card-body text-danger">
+                                <p class="card-text">
+                                    {{ error|escape }}
+                                </p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+                {% for error in form.non_field_errors %}
+                    <div class="card border-danger mb-3">
+                        <div class="card-body text-danger">
+                            <p class="card-text">
+                                {{ error|escape }}
+                            </p>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock content %}

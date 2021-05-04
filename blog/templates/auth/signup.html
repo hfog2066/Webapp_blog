@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block title %}Log in{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center align-items-center signup-form">
+        <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5">
+            <form method="post">
+                {% csrf_token %}
+                <h1 class="text-center">Blog App</h1><br>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label>Name</label>
+                        <div class="input-group">
+                            {{ form.first_name }}
+                        </div>
+                    </div>
+                    <div class="form-group col">
+                        <label>Last name</label>
+                        <div class="input-group">
+                            {{ form.last_name }}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="username">User name</label>
+                    {{ form.username }}
+                </div>
+                <div class="form-group">
+                    <label for="password1">Password</label>
+                    {{ form.password1 }}
+                </div>
+                <div class="form-group">
+                    <label for="password2">Confirm your password</label>
+                    {{ form.password2 }}
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    {{ form.email }}
+                </div>
+                <p>
+                    <label>
+                        {{ form.is_admin }}
+                        <span>You are an administrator</span>
+                    </label>
+                </p>
+                {% if form.errors %}
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <div class="card border-danger mb-3">
+                                <div class="card-body text-danger">
+                                    <p class="card-text">
+                                        {{ error|escape }}
+                                    </p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                        <div class="card border-danger mb-3">
+                            <div class="card-body text-danger">
+                                <p class="card-text">
+                                    {{ error|escape }}
+                                </p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <button type="submit" class="btn btn-outline-primary btn-block">
+                    Sign up <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

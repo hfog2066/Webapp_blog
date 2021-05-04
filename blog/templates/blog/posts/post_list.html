@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block title %}Posts{% endblock title %}
+{% load widget_tweaks %}
+{% block content %}
+    <div class="row left-right-text">
+        <h2>Posts</h2>
+        <a href="{% url 'posts/create' %}" class="btn btn-outline-primary mb-3 btn-sm">New post</a>
+    </div>
+    <form method="get">
+        <div class="form-group row">
+            <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                {{ filter.form.tags.label_tag }}
+                <div class="input-group">
+                    {% render_field filter.form.tags class="form-control selectpicker border" %}
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                {{ filter.form.categories.label_tag }}
+                <div class="input-group">
+                    {% render_field filter.form.categories class="form-control selectpicker border" %}
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 align-self-end ml-auto">
+                <button type="submit" class="btn btn-outline-primary btn-block">Filter</button>
+            </div>
+        </div>
+
+    </form>
+    {% for post in post_list %}
+        <div class="card post-card">
+            <a class="btn btn-info btn-sm float-right" href="{% url 'posts/update' post.id %}">
+                <i class="fas fa-edit"></i>
+            </a>
+            <div class="card-body">
+                <div class="">
+                    <h4 class="card-title"><strong><a
+                            href="{% url 'post/detail' post.id %}">{{ post.title }}</a></strong></h4>
+                </div>
+                <h6 class="card-subtitle mb-2 text-muted">
+                    <div class="left-right-text">
+                        <p>{{ post.author }}</p>
+                        <p>{{ post.publication_date }}</p>
+                    </div>
+                </h6>
+                <p class="card-text">
+                    {{ post.text }}
+                </p>
+                <p class="card-link">
+                    {% for tag in post.tags.all %}
+                        {{ tag }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </p>
+                <p class="float-right likes-amount">
+                    <small id="likesOf{{ post.id }}">{{ post.likes }}</small>
+                </p>
+                <a href="javascript:void(0)" class="float-right lead like-btn" id="{{ post.id }}">
+                    <i class="fas fa-heart"></i>
+                </a>
+            </div>
+        </div>
+    {% endfor %}
+    {% if is_paginated %}
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+                <li>
+                    <span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+                </li>
+            {% endif %}
+            <li class="">
+                <span>Page {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.</span>
+            </li>
+            {% if page_obj.has_next %}
+                <li>
+                    <span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>
+                </li>
+            {% endif %}
+        </ul>
+    {% else %}
+        <li class="">
+            <span>Page 1 of 1.</span>
+        </li>
+    {% endif %}
+{% endblock content %}
