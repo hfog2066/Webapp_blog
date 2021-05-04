@@ -1,0 +1,1 @@
+#This repository contains Web App Blog created with Python3, Django, PostgreSqL
