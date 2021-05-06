@@ -15,6 +15,7 @@
  $ cd blog
 
  <p>Edit PostgreSQL Database settings.py</p>
+ <pre>
  <code>
  DATABASES = {<br />
     'default': {{<br />
@@ -27,6 +28,7 @@
     }<br />
  }<br />
  </code>
+ </pre>
 
  Database migrations
  
