@@ -1,20 +1,20 @@
 # This repository contains Web App Blog created with Python3, Django, PostgreSqL 
 
 
- Set up
- Create folder project
- $ mkdir blog
- Create virtual environment
- pip install virtualenv
- $ cd blog
- $ virtualenv env
- $ . env/bin/activate
+ <p>Set up</p><br />
+ <p>Create folder project</p><br />
+ <pre><code>$ mkdir blog</code><br /></pre>
+ <p>Create virtual environment:</p><br />
+ <pre><code>pip install virtualenv</code><br /></pre>
+ <pre><code>$ cd blog</code><br /></pre>
+ <pre><code>$ virtualenv env</code><br /></pre>
+ <pre><code>$ . env/bin/activate</code><br /></pre>
  
  Install Django
- (env)$ django-admin startproject blog
- $ cd blog
+ <pre><code>(env)$ django-admin startproject blog</code><br /></pre>
+ <pre><code>$ cd blog</code><br /></pre>
 
- <p>Edit PostgreSQL Database settings.py</p>
+ <p>Edit PostgreSQL Database settings.py:</p>
  <pre>
  <code>
  DATABASES = {<br />
@@ -30,12 +30,12 @@
  </code>
  </pre>
 
- Database migrations
+ <p>Database migrations</p><br>
  
- blog $ python manage.py makemigrations
- blog $ python manage.py migrate
+ <pre><code>blog $ python manage.py makemigrations<br /></code><br /></pre>
+ <pre><code>blog $ python manage.py migrate<br /></code><br /></pre>
 
- Run project
+ <p>Run project<p><br>
 
- blog $ python manage.py runserver
+ <pre><code>blog $ python manage.py runserver<br /></code><br /></pre>
  
