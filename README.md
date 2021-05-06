@@ -35,7 +35,6 @@
  <pre><code>blog $ python manage.py makemigrations<br /></code><br /></pre>
  <pre><code>blog $ python manage.py migrate<br /></code><br /></pre>
 
- <p>Run project<p><br>
-
+ <p>Run project<p>
  <pre><code>blog $ python manage.py runserver<br /></code><br /></pre>
  
