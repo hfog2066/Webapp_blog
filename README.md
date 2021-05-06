@@ -15,7 +15,7 @@
  $ cd blog
 
  Edit PostgreSQL Database settings.py
- 
+ <code>
  DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -26,6 +26,7 @@
         'PORT': '5432',
     }
  }
+ </code>
 
  Database migrations
  
