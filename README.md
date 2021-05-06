@@ -2,15 +2,15 @@
 
 
  <p>Set up</p><br />
- <p>Create folder project</p><br />
+ <p>Create folder project</p>
  <pre><code>$ mkdir blog</code><br /></pre>
- <p>Create virtual environment:</p><br />
+ <p>Create virtual environment:</p>
  <pre><code>pip install virtualenv</code><br /></pre>
  <pre><code>$ cd blog</code><br /></pre>
  <pre><code>$ virtualenv env</code><br /></pre>
  <pre><code>$ . env/bin/activate</code><br /></pre>
  
- Install Django
+ <p>Install Django</p>
  <pre><code>(env)$ django-admin startproject blog</code><br /></pre>
  <pre><code>$ cd blog</code><br /></pre>
 
