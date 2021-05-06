@@ -1,0 +1,14 @@
+certifi==2021.5.2
+Django==3.2
+django-background-tasks==1.2.5
+django-bootstrap-datepicker-plus==3.0.5
+django-compat==1.0.15
+django-datetimepicker==3.14
+django-filter==2.4.0
+django-widget-tweaks==1.4.3
+psycopg2==2.8.6
+pytz==2021.1
+setuptools==56.1.0
+six==1.15.0
+sqlparse==0.4.1
+wheel==0.36.2
