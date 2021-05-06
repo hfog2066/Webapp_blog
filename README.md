@@ -14,18 +14,18 @@
  (env)$ django-admin startproject blog
  $ cd blog
 
- Edit PostgreSQL Database settings.py
+ <p>Edit PostgreSQL Database settings.py</p>
  <code>
- DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': '<database_name>',
-        'USER': '<username>',
-        'PASSWORD': '<password>',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
- }
+ DATABASES = {<br />
+    'default': {{<br />
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',<br />
+        'NAME': '<database_name>',<br />
+        'USER': '<username>',<br />
+        'PASSWORD': '<password>',<br />
+        'HOST': 'localhost',<br />
+        'PORT': '5432',<br />
+    }<br />
+ }<br />
  </code>
 
  Database migrations
