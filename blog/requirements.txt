@@ -1,4 +1,4 @@
-certifi==2021.5.2
+certifi==2020.12.5
 Django==3.2
 django-background-tasks==1.2.5
 django-bootstrap-datepicker-plus==3.0.5

@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'boards.apps.BoardsConfig',
     'background_task',
     'widget_tweaks',
     'django_filters',
@@ -41,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'boards.apps.BoardsConfig',    
+        
 ]
 
 MIDDLEWARE = [
