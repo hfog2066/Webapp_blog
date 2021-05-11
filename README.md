@@ -5,7 +5,7 @@
  <p>Create folder project</p>
  <pre><code>$ mkdir blog</code><br /></pre>
  <p>Create virtual environment:</p>
- <pre><code>pip install virtualenv</code><br /></pre>
+ <pre><code>pip3 install virtualenv</code><br /></pre>
  <pre><code>$ cd blog</code><br /></pre>
  <pre><code>$ virtualenv env</code><br /></pre>
  <pre><code>$ . env/bin/activate</code><br /></pre>
@@ -32,9 +32,9 @@
 
  <p>Database migrations</p><br>
  
- <pre><code>blog $ python manage.py makemigrations<br /></code><br /></pre>
- <pre><code>blog $ python manage.py migrate<br /></code><br /></pre>
+ <pre><code>blog $ python3 manage.py makemigrations<br /></code><br /></pre>
+ <pre><code>blog $ python3 manage.py migrate<br /></code><br /></pre>
 
  <p>Run project<p>
- <pre><code>blog $ python manage.py runserver<br /></code><br /></pre>
+ <pre><code>blog $ python3 manage.py runserver<br /></code><br /></pre>
  
