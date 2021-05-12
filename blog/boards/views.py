@@ -18,7 +18,7 @@ class NavigationEnabled(ContextMixin):
 
 
 class LoginRequired(LoginRequiredMixin):
-    login_url = '/blog/auth/login'
+    login_url = '/boards/auth/login'
 
 
 def like_post(request, *args, **kwargs):
@@ -33,7 +33,7 @@ class PostUpdateView(LoginRequired, UpdateView, NavigationEnabled):
     context_object_name = 'post'
     model = Post
     form_class = PostUpdateForm
-    template_name = 'blog/posts/post_update.html'
+    template_name = 'boards/posts/post_update.html'
     success_url = reverse_lazy('posts/list')
 
     def get_success_url(self):
@@ -51,7 +51,7 @@ class PostUpdateView(LoginRequired, UpdateView, NavigationEnabled):
 class PostDetailView(LoginRequired, DetailView, NavigationEnabled):
     model = Post
     context_object_name = 'post'
-    template_name = 'blog/posts/post_detail.html'
+    template_name = 'boards/posts/post_detail.html'
 
     def get_context_data(self, **kwargs):
         context = super(PostDetailView, self).get_context_data()
@@ -74,7 +74,7 @@ class PostDetailView(LoginRequired, DetailView, NavigationEnabled):
 
 
 class PostCreateView(LoginRequired, CreateView, NavigationEnabled):
-    template_name = '/blog/posts/post_create.html'
+    template_name = '/boards/posts/post_create.html'
     form_class = PostCreationForm
     success_url = reverse_lazy('posts/list')
 
@@ -95,7 +95,7 @@ class PostListView(LoginRequired, FilterView, NavigationEnabled):
     model = Post
     paginate_by = 5
     context_object_name = 'post_list'
-    template_name = '/blog/posts/post_list.html'
+    template_name = '/boards/posts/post_list.html'
     ordering = ['-publication_date']
 
     def get_queryset(self):

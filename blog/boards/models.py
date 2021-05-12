@@ -34,7 +34,7 @@ class Post(models.Model):
     is_disabled = models.BooleanField(default=False)
     publication_date = models.DateTimeField(blank=True, default=timezone.now)
     is_active = models.BooleanField(default=True)
-    creation_date = models.DateTimeField(verbose_name="Fecha de creacion", auto_now_add=True)
+    creation_date = models.DateTimeField(verbose_name="Creation date", auto_now_add=True)
 
     def save(self, force_insert=False, force_update=False, using=None,
             update_fields=None):

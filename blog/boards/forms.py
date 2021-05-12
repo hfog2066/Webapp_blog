@@ -11,10 +11,10 @@ from .models import *
 
 class LoginForm(AuthenticationForm):
     error_messages = AuthenticationForm.error_messages
-    error_messages['invalid_login'] = ("Por favor, introduzca un correo electrónico y/o clave correctos.")
+    error_messages['invalid_login'] = ("Please enter an email and password valid.")
 
     username = forms.CharField(
-        label='Correo electrónico', required=True,
+        label='Email', required=True,
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
@@ -23,9 +23,9 @@ class LoginForm(AuthenticationForm):
         )
     )
     password = forms.CharField(
-        label='Contraseña', required=True,
+        label='Password', required=True,
         widget=forms.PasswordInput(
-            attrs={'class': 'form-control', 'placeholder': 'Contraseña'}
+            attrs={'class': 'form-control', 'placeholder': 'Password'}
         )
     )
 
@@ -39,34 +39,34 @@ class LoginForm(AuthenticationForm):
 
 class SignUpForm(UserCreationForm):
     error_messages = UserCreationForm.error_messages
-    error_messages['duplicate_username'] = ("Ya existe un usuario con este correo electrónico.")
+    error_messages['duplicate_username'] = ("User name already exists.")
 
-    first_name = forms.CharField(label='Nombre', max_length=50, required=True,
+    first_name = forms.CharField(label='Name', max_length=50, required=True,
                                  widget=forms.TextInput(
-                                     attrs={'class': 'form-control', 'placeholder': 'Pepito', 'autofocus': 'autofocus'}
+                                     attrs={'class': 'form-control', 'placeholder': 'Hector', 'autofocus': 'autofocus'}
                                  ))
-    last_name = forms.CharField(label='Apellidos', max_length=50, required=True,
+    last_name = forms.CharField(label='Last name', max_length=50, required=True,
                                 widget=forms.TextInput(
-                                    attrs={'class': 'form-control', 'placeholder': 'Perez'}
+                                    attrs={'class': 'form-control', 'placeholder': 'Orozco'}
                                 ))
     username = forms.CharField(label='Username', required=True,
                                widget=forms.TextInput(
                                    attrs={'class': 'form-control'}
                                ))
-    password1 = forms.CharField(label='Contraseña', required=True,
+    password1 = forms.CharField(label='Password', required=True,
                                 widget=forms.PasswordInput(
                                     attrs={'class': 'form-control'}
                                 ))
-    password2 = forms.CharField(label='Verificar contraseña', required=True,
+    password2 = forms.CharField(label='Password check', required=True,
                                 widget=forms.PasswordInput(
                                     attrs={'class': 'form-control'}
                                 ))
-    email = forms.EmailField(label='Correo electrónico', required=False,
+    email = forms.EmailField(label='Email', required=False,
                              widget=forms.EmailInput(
-                                 attrs={'class': 'form-control', 'placeholder': 'Correo electrónico'}
+                                 attrs={'class': 'form-control', 'placeholder': 'Email'}
                              ))
 
-    is_admin = forms.BooleanField(label="Es administrador?:", required=False)
+    is_admin = forms.BooleanField(label="Are you Admin?:", required=False)
 
     class Meta:
         model = CustomUser
@@ -91,7 +91,7 @@ class SignUpForm(UserCreationForm):
         cleaned_data = super(SignUpForm, self).clean()
         username = cleaned_data.get('username')
         if username and CustomUser.objects.filter(username__iexact=username).exists():
-            self.add_error('username', 'Ya existe un usuario con este correo electrónico.')
+            self.add_error('username', 'User name already exists.')
         elif username and not CustomUser.objects.filter(username__iexact=username).exists():
             cleaned_data['username'] = cleaned_data.get('username').lower()
         return cleaned_data
@@ -135,7 +135,7 @@ class PostCreationForm(forms.ModelForm):
     def clean_title(self):
         title = self.cleaned_data['title']
         if Post.objects.filter(author=self.author, title=title).exists():
-            raise forms.ValidationError("Ya has escrito un post con ese titulo.")
+            raise forms.ValidationError("already written a post with that title.")
         return title
 
 
@@ -173,7 +173,7 @@ class PostUpdateForm(forms.ModelForm):
     def clean_title(self):
         title = self.cleaned_data['title']
         if Post.objects.filter(author=self.author, title=title).exists():
-            raise forms.ValidationError("Ya has escrito un post con ese titulo.")
+            raise forms.ValidationError("already written a post with that title.")
         return title
 
 class CreateCommentaryForm(forms.ModelForm):
